@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalMovies extends StatelessWidget {
@@ -19,18 +18,21 @@ class HorizontalMovies extends StatelessWidget {
             child: SizedBox(
               width: 100,
               height: 142,
-              child: CachedNetworkImage(
-                imageUrl: movies[index],
+              child: Image.network(
+                movies[index],
                 alignment: Alignment.topCenter,
                 fit: BoxFit.fitHeight,
                 height: 100,
                 width: 142,
-                placeholder: (context, url) => Container(
-                  height: 100,
-                  width: 142,
-                  color: const Color(0xFF1E1E1E),
-                ),
-                errorWidget: (context, url, error) => Container(
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    height: 100,
+                    width: 142,
+                    color: const Color(0xFF1E1E1E),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) => Container(
                   height: 100,
                   width: 142,
                   color: const Color(0xFF1E1E1E),

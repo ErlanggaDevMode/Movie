@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; 
@@ -27,24 +26,27 @@ class HomeScreenImage extends ConsumerWidget {
         autoplay: true,
         itemCount: images.length,
         itemBuilder: (BuildContext context, int index) {
-          return CachedNetworkImage(
-            imageUrl: images[index],
+          return Image.network(
+            images[index],
             alignment: Alignment.topCenter,
             fit: BoxFit.fitHeight,
             height: 374,
             width: screenWidth,
-            placeholder: (context, url) => Container(
-              height: 374,
-              width: screenWidth,
-              color: const Color(0xFF1E1E1E),
-              child: const Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Colors.white24,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                height: 374,
+                width: screenWidth,
+                color: const Color(0xFF1E1E1E),
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white24,
+                  ),
                 ),
-              ),
-            ),
-            errorWidget: (context, url, error) => Container(
+              );
+            },
+            errorBuilder: (context, error, stackTrace) => Container(
               height: 374,
               width: screenWidth,
               color: const Color(0xFF1E1E1E),

@@ -33,6 +33,27 @@ class HomeScreenImage extends ConsumerWidget {
             fit: BoxFit.fitHeight,
             height: 374,
             width: screenWidth,
+            placeholder: (context, url) => Container(
+              height: 374,
+              width: screenWidth,
+              color: const Color(0xFF1E1E1E),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white24,
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => Container(
+              height: 374,
+              width: screenWidth,
+              color: const Color(0xFF1E1E1E),
+              child: const Icon(
+                Icons.movie,
+                color: Colors.white38,
+                size: 48,
+              ),
+            ),
           );
         },
       ),

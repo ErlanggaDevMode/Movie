@@ -25,6 +25,21 @@ class HorizontalMovies extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 height: 100,
                 width: 142,
+                placeholder: (context, url) => Container(
+                  height: 100,
+                  width: 142,
+                  color: const Color(0xFF1E1E1E),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  height: 100,
+                  width: 142,
+                  color: const Color(0xFF1E1E1E),
+                  child: const Icon(
+                    Icons.movie,
+                    color: Colors.white38,
+                    size: 28,
+                  ),
+                ),
               ),
             ),
           );

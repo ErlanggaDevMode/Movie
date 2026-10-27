@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:movies/ui/screens/home/genre_screen.dart';
 import 'package:movies/ui/screens/home/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
 
     screens.add(const HomeScreen());
-    screens.add(const Placeholder());
+    screens.add(const GenreScreen());
     screens.add(const Placeholder());
   }
 
